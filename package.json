@@ -1,0 +1,33 @@
+{
+  "name": "typescript-frontend-boilerplate",
+  "version": "1.0.0",
+  "description": "a simple typescript boilerplate for frontend projects",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.prod.config.js && cd public && copy * ../dist",
+    "start": "webpack-dev-server --open",
+    "watch": "webpack --watch",
+    "server": "node server.js"
+  },
+  "author": "Florian Raith",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-numeric-separator": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-typescript": "^7.7.7",
+    "babel-loader": "^8.0.4",
+    "copy": "^0.3.2",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {}
+}
