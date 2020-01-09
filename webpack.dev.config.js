@@ -1,18 +1,27 @@
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    // Change to your "entry-point".
-    entry: './src/index',
+    entry: './src/bootstrap',
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            hash: true,
+            template: './src/html/index.html',
+            filename: 'index.html'
+        }),
         // new CleanWebpackPlugin(),
-        // new HtmlWebpackPlugin({ title: 'Development' }),
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -28,6 +37,10 @@ module.exports = {
             test: /\.(ts|js)x?$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
+        },
+        {
+            test: /\.css$/i,
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
         }],
     }
 };

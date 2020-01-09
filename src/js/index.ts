@@ -1,6 +1,6 @@
 import { Greeter } from "./greeter";
 
-function main() {
+export default function main() {
 
   const greeter = new Greeter();
   greeter.setName('Max');
@@ -10,4 +10,3 @@ function main() {
   status!.innerHTML = 'working';
 
 }
-main();
