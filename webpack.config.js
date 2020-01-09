@@ -44,10 +44,6 @@ const production = {
   mode: 'production',
 };
 
-function TestObject(name) {
-  this.name = name;
-}
-
 // Configuration which is only valid for development
 const development = {
   mode: 'development',
@@ -59,8 +55,6 @@ const development = {
     publicPath: '/'
   },
 };
-
-console.log(merge(common, development));
 
 module.exports = process.env.NODE_ENV === 'development' ? merge(common, development) : merge(common, production);
 
