@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const merge = require('lodash.merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,6 +25,8 @@ for(let file of fs.readdirSync(path.resolve(__dirname, 'src', 'views'))) {
 const common = {
   entry: './src/bootstrap',
   plugins: [
+    ...views,
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       { from: 'static' }
     ]),
@@ -31,7 +34,6 @@ const common = {
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
-    ...views,
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
