@@ -2,9 +2,11 @@ const path = require('path');
 const fs = require('fs');
 const merge = require('lodash.merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 
@@ -60,6 +62,9 @@ const common = {
 // Configuration which is only valid for production
 const production = {
   mode: 'production',
+  optimization: {
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  }
 };
 
 // Configuration which is only valid for development
