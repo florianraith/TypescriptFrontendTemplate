@@ -30,8 +30,8 @@ A simple typescript boilerplate for personal frontend projects
 ## Commands
 
 * `npm run build`  
-  builds production files via webpack and puts them into the /dist folder.  
+  Builds production files via webpack and puts them into the `/dist` folder.  
 
 * `npm run server`  
-  Starts a development server, which is accessible under localhost:3000. A file is reloaded as soon as it is saved, eliminating the need to restart the development server.  
+  Starts a development server, which is accessible under `localhost:3000`. A file is reloaded as soon as it is saved, eliminating the need to restart the development server.  
 
