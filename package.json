@@ -4,7 +4,7 @@
   "description": "a simple typescript boilerplate for frontend projects",
   "main": "index.js",
   "scripts": {
-    "build": "webpack && cd public && copy * ../dist",
+    "build": "webpack",
     "start": "webpack-dev-server --open",
     "watch": "webpack --watch",
     "server": "NODE_ENV=development node server.js"
@@ -21,6 +21,7 @@
     "@babel/preset-typescript": "^7.7.7",
     "babel-loader": "^8.0.4",
     "copy": "^0.3.2",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.1",
     "express": "^4.17.1",
     "html-webpack-plugin": "^3.2.0",

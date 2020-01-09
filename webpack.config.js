@@ -1,24 +1,36 @@
 const path = require('path');
+const fs = require('fs');
 const merge = require('lodash.merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 
+const htmlFiles = [];
+for(let file of fs.readdirSync(path.resolve(__dirname, 'src', 'html'))) {
+  if(!/\.(html)$/.test(file)) continue;
+
+  htmlFiles.push(new HtmlWebpackPlugin({
+    inject: false,
+    hash: true,
+    template: './src/html/' + file,
+    filename: file,
+  }));
+}
+
 // Configuration that is the same for both production and development
 const common = {
   entry: './src/bootstrap',
   plugins: [
+    new CopyWebpackPlugin([
+      { from: 'static' }
+    ]),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/html/index.html',
-      filename: 'index.html'
-    }),
+    ...htmlFiles,
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -37,7 +49,7 @@ const common = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      }
+      },
     ],
   }
 };

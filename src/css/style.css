@@ -10,6 +10,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 10vw;
   padding-top: 10em;
   background: #C33764;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
@@ -17,9 +18,15 @@ body {
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   font-size: 1.5em;
+  text-align: center;
 }
 
 h1 {
   letter-spacing: .2em; 
   margin-bottom: .5em;
+}
+
+a {
+  margin-top: 1em;
+  color: #FFFFFF;
 }
