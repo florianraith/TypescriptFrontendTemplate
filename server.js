@@ -10,7 +10,7 @@ const compiler = webpack(config);
 
 const app = express();
 app.use(morgan('tiny'));
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'static')));
 app.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
 
 const server = http.createServer(app);
