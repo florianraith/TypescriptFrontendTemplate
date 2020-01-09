@@ -7,14 +7,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 
-const htmlFiles = [];
-for(let file of fs.readdirSync(path.resolve(__dirname, 'src', 'html'))) {
+// Add a plugin for every html file
+const views = [];
+for(let file of fs.readdirSync(path.resolve(__dirname, 'src', 'views'))) {
   if(!/\.(html)$/.test(file)) continue;
 
-  htmlFiles.push(new HtmlWebpackPlugin({
+  views.push(new HtmlWebpackPlugin({
     inject: false,
     hash: true,
-    template: './src/html/' + file,
+    template: './src/views/' + file,
     filename: file,
   }));
 }
@@ -30,7 +31,7 @@ const common = {
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
-    ...htmlFiles,
+    ...views,
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
