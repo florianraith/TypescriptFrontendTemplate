@@ -3,12 +3,15 @@ const merge = require('lodash.merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const devMode = process.env.NODE_ENV === 'development';
+
 // Configuration that is the same for both production and development
 const common = {
   entry: './src/bootstrap',
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       inject: false,
@@ -19,7 +22,7 @@ const common = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js',
+    filename: '[name].[chunkhash].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
@@ -56,5 +59,5 @@ const development = {
   },
 };
 
-module.exports = process.env.NODE_ENV === 'development' ? merge(common, development) : merge(common, production);
+module.exports = devMode ? merge(common, development) : merge(common, production);
 
